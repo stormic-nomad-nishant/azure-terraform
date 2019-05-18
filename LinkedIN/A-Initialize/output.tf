@@ -1,7 +1,7 @@
 output "Blob-ID" {
-  value = "${module.linkedin-storage-backend.Blob-id}"
+  value = "${module.linkedin-strg-backend.Blob-id}"
 }
 
 output "Blob-URL" {
-  value = "${module.linkedin-storage-backend.Blob-URL}"
+  value = "${module.linkedin-strg-backend.Blob-URL}"
 }
