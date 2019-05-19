@@ -5,3 +5,7 @@ output "Blob-ID" {
 output "Blob-URL" {
   value = "${module.linkedin-strg-backend.Blob-URL}"
 }
+
+output "Primary-Access-Key" {
+  value = "${module.linkedin-strg-backend.Storage-Primanry-Access-key}"
+}

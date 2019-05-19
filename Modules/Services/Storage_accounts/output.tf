@@ -16,3 +16,7 @@ output "Blob-id" {
 output "Blob-URL" {
   value = "${azurerm_storage_blob.generic-blob.url}"
 }
+
+output "Storage-Primanry-Access-key" {
+  value = "${azurerm_storage_account.generic-storage-ac.primary_access_key}"
+}
