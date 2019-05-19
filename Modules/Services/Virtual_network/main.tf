@@ -32,29 +32,88 @@ resource "azurerm_virtual_network" "generic-virtual-cloud" {
     enable = true
     id = "${azurerm_network_ddos_protection_plan.generic-ddos-prc.id}"
   }
-  subnet {
-    address_prefix = "${var.subnet1-cidr}"
-    name = "${var.subnet1-name}"
+  tags = {
+    environment = "${var.env-type}"
   }
+}
 
-  subnet {
-    address_prefix = "${var.subnet2-cidr}"
-    name = "${var.subnet2-name}"
-  }
+resource "azurerm_subnet" "private-subnet-a" {
+  name                 = "${var.subnet1-name}"
+  resource_group_name  = "${var.resource-grp-name}"
+  virtual_network_name = "${azurerm_virtual_network.generic-virtual-cloud.name}"
+  address_prefix       = "${var.subnet1-cidr}"
+}
 
-  subnet {
-    address_prefix = "${var.subnet3-cidr}"
-    name = "${var.subnet3-name}"
-    security_group = "${azurerm_network_security_group.generic-public-sec-grp.id}"
-  }
+resource "azurerm_subnet" "private-subnet-b" {
+  name                 = "${var.subnet2-name}"
+  resource_group_name  = "${var.resource-grp-name}"
+  virtual_network_name = "${azurerm_virtual_network.generic-virtual-cloud.name}"
+  address_prefix       = "${var.subnet2-cidr}"
+}
 
-  subnet {
-    address_prefix = "${var.subnet4-cidr}"
-    name = "${var.subnet4-name}"
-    security_group = "${azurerm_network_security_group.generic-public-sec-grp.id}"
+resource "azurerm_subnet" "public-subnet-a" {
+  name                 = "${var.subnet3-name}"
+  resource_group_name  = "${var.resource-grp-name}"
+  virtual_network_name = "${azurerm_virtual_network.generic-virtual-cloud.name}"
+  address_prefix       = "${var.subnet3-cidr}"
+}
+resource "azurerm_subnet" "public-subnet-b" {
+  name                 = "${var.subnet4-name}"
+  resource_group_name  = "${var.resource-grp-name}"
+  virtual_network_name = "${azurerm_virtual_network.generic-virtual-cloud.name}"
+  address_prefix       = "${var.subnet4-cidr}"
+}
+
+
+
+
+
+
+
+
+resource "azurerm_network_interface" "private-nic" {
+  name                = "private-nic"
+  location            = "${var.azure-dc}"
+  resource_group_name = "${var.resource-grp-name}"
+
+  ip_configuration {
+    name                          = "private-sub-a"
+    subnet_id                     = "${azurerm_subnet.private-subnet-a.id}"
+    private_ip_address_allocation = "Dynamic"
   }
+}
+
+resource "azurerm_public_ip" "public-a-ips" {
+  name                = "public-ips-a"
+  location            = "${var.azure-dc}"
+  resource_group_name = "${var.resource-grp-name}"
+  allocation_method   = "Static"
 
   tags = {
     environment = "${var.env-type}"
+  }
+}
+resource "azurerm_public_ip" "public-b-ips" {
+  name                = "public-ips-b"
+  location            = "${var.azure-dc}"
+  resource_group_name = "${var.resource-grp-name}"
+  allocation_method   = "Static"
+
+  tags = {
+    environment = "${var.env-type}"
+  }
+}
+
+
+resource "azurerm_network_interface" "public-nic" {
+  name                = "public-nic"
+  location            = "${var.azure-dc}"
+  resource_group_name = "${var.resource-grp-name}"
+
+  ip_configuration {
+    name                          = "public-sub-a"
+    subnet_id                     = "${azurerm_subnet.public-subnet-a.id}"
+    public_ip_address_id = "${azurerm_public_ip.public-a-ips.id}"
+    private_ip_address_allocation = "Dynamic"
   }
 }
