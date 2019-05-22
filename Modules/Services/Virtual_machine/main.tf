@@ -1,7 +1,7 @@
 resource "azurerm_virtual_machine" "generic-machine" {
   location = "${var.azure-dc}"
   name = "${var.machine-name}"
-  network_interface_ids = []
+  network_interface_ids = ["${var.vir-nic}"]
   resource_group_name = "${var.resource-grp-name}"
   vm_size = "${var.machine-type}"
 
@@ -18,14 +18,14 @@ resource "azurerm_virtual_machine" "generic-machine" {
     managed_disk_type = "Standard_LRS"
   }
   os_profile {
-    computer_name  = "linkedin-test"
-    admin_username = "testadmin"
+    computer_name  = "${var.sys_hostname}"
+    admin_username = "${var.account_name}"
   }
   os_profile_linux_config {
     disable_password_authentication = true
     ssh_keys {
-      key_data = ""
-      path = ""
+      key_data = "${file("/Users/nissingh/IdeaProjects/id_rsa.pub")}"
+      path = "/home/${var.account_name}/.ssh/authorized_keys"
     }
   }
   tags = {
