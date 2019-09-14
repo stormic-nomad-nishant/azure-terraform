@@ -10,8 +10,10 @@
 1. Follow https://docs.microsoft.com/en-gb/azure/virtual-machines/linux/terraform-install-configure
 This will setup your azure account to be used with terraform.
 2. Next setup your local env variables as mentioned in the above link
-3. You also needs to install azure-cli on your local system
-   ex: for Mac  `brew update && brew install azure-cli` and then login via `az login`
+
+### Install azure-cli on your macbook
+1. You also needs to install azure-cli on your local system
+   For Mac:  `brew update && brew install azure-cli` and then login via `az login`
 
 ## Final Check 
 . Move into the "Test" directory and then test if you can do stuff with terraform , use: 
