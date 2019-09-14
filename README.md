@@ -1,9 +1,12 @@
 # Terraform Azure Workshop :fire: 
 
 ## Prerequisite
-1. Install Terraform for your system via https://www.terraform.io/downloads.html
-2. Once the binary is downloaded on your system, unzip it and move the binary to `/usr/local/bin`
+### Install Terraform
+1. We will be running this workshop on Macbook 
+2. Dowloard Terraform binary for your system via https://releases.hashicorp.com/terraform/0.12.8/terraform_0.12.8_darwin_amd64.zip
+3. Once the binary is downloaded on your system, unzip it and move the binary to `/usr/local/bin`
 
+### Setup Azure 
 1. Follow https://docs.microsoft.com/en-gb/azure/virtual-machines/linux/terraform-install-configure
 This will setup your azure account to be used with terraform.
 2. Next setup your local env variables as mentioned in the above link
