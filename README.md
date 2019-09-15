@@ -18,8 +18,28 @@
 8. The above command should return a json with key:value pairs `appId`,`displayName`,`name`,`password` & `tenant` . Copy all the details down. 
 
 
+### Configure Terraform environment variables 
+To configure Terraform to use your Azure AD service principal, set the following environment variables, which are then used by the Azure Terraform modules. 
 
+* ARM_SUBSCRIPTION_ID
+* ARM_CLIENT_ID
+* ARM_CLIENT_SECRET
+* ARM_TENANT_ID
+* ARM_ENVIRONMENT
 
+You can use the following sample shell script to set those variables:
+
+```
+#!/bin/sh
+echo "Setting environment variables for Terraform"
+export ARM_SUBSCRIPTION_ID=your_subscription_id
+export ARM_CLIENT_ID=your_appId
+export ARM_CLIENT_SECRET=your_password
+export ARM_TENANT_ID=your_tenant_id
+
+# Not needed for public, required for usgovernment, german, china
+export ARM_ENVIRONMENT=public
+```
 
 
 2. Follow https://docs.microsoft.com/en-gb/azure/virtual-machines/linux/terraform-install-configure
