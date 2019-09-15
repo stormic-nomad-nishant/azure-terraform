@@ -57,4 +57,8 @@ Do a `source .bash_profile` on terminal
    4. `terraform destroy` // This will destroy the resource
 
 ## Resources 
-Setting up Terraform with Azure: https://docs.microsoft.com/en-gb/azure/virtual-machines/linux/terraform-install-configure
+* https://docs.microsoft.com/en-gb/azure/virtual-machines/linux/terraform-install-configure
+* https://www.terraform.io/docs/providers/azurerm/index.html
+* https://blog.gruntwork.io/how-to-create-reusable-infrastructure-with-terraform-modules-25526d65f73d
+* https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca
+
