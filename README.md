@@ -45,7 +45,9 @@ Do a `source .bash_profile` on terminal
 
 ### Install azure-cli on your macbook
 1. You also needs to install azure-cli on your local system
-   For Mac:  `brew update && brew install azure-cli` and then login via `az login`
+   For Mac:  `brew update && brew install azure-cli` 
+2. Login from your local terminal to azure via `az login`
+3. This will open a browser tab and will return details on to the terminal for subscription. 
 
 ## Final Check 
 . Move into the "Test" directory and then test if you can do stuff with terraform , use: 
