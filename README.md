@@ -5,11 +5,26 @@
 1. We will be running this workshop on Macbook 
 2. Dowloard Terraform binary for your system via https://releases.hashicorp.com/terraform/0.12.8/terraform_0.12.8_darwin_amd64.zip
 3. Once the binary is downloaded on your system, unzip it and move the binary to `/usr/local/bin`
+4. Move to the root and type `terraform`, the command should be recognized & give you Usage 
 
-### Setup Azure 
-1. Follow https://docs.microsoft.com/en-gb/azure/virtual-machines/linux/terraform-install-configure
+### Setup Terraform access to your Azure account
+1. Activate your microsolft azure account following the wiki.
+2. Login to your Azure account and then click on the `Cloud Shell` icon on the top right side; this will open a mini shell in the browser.
+3. On the cloud shell: Click -> Bash & Click -> `Create storage`. This will take a while to create & you will be connected to terminal shortly.
+4. On the cloud shell run: `az account list --query "[].{name:name, subscriptionId:id, tenantId:tenantId}"` to get a list of subscription ID and tenant ID values.
+5. Copy the value of `subscriptionId` from the above returned json.
+6. Next replace the above `subscriptionId` value to the following `az account set --subscription="${subscriptionId}"` & paste in the cloud shell. Hit enter , the command should not result anything in return.
+7. Now you can create a service principal for use with Terraform using `az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/${subscriptionId}"` 
+8. The above command should return a json with key:value pairs `appId`,`displayName`,`name`,`password` & `tenant` . Copy all the details down. 
+
+
+
+
+
+
+2. Follow https://docs.microsoft.com/en-gb/azure/virtual-machines/linux/terraform-install-configure
 This will setup your azure account to be used with terraform.
-2. Next setup your local env variables as mentioned in the above link
+3. Next setup your local env variables as mentioned in the above link
 
 ### Install azure-cli on your macbook
 1. You also needs to install azure-cli on your local system
