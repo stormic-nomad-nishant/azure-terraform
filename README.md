@@ -27,7 +27,7 @@ To configure Terraform to use your Azure AD service principal, set the following
 * ARM_TENANT_ID
 * ARM_ENVIRONMENT
 
-You can use the following sample shell script to set those variables:
+Copy the below & paste in your `.bash_profile` replacing the variables that you noted earlier:
 
 ```
 #!/bin/sh
@@ -41,10 +41,7 @@ export ARM_TENANT_ID=your_tenant_id
 export ARM_ENVIRONMENT=public
 ```
 
-
-2. Follow https://docs.microsoft.com/en-gb/azure/virtual-machines/linux/terraform-install-configure
-This will setup your azure account to be used with terraform.
-3. Next setup your local env variables as mentioned in the above link
+Do a `source .bash_profile` on terminal
 
 ### Install azure-cli on your macbook
 1. You also needs to install azure-cli on your local system
@@ -55,3 +52,6 @@ This will setup your azure account to be used with terraform.
    1. `tf plan` // This should give you a plan , if a error occurs saying no azure cli then you missed point 3
    2. `tf apply` // This will create the corresponding resource
    3. `tf destroy` // This will destroy the resource, you can use this after point ii
+
+## Resources 
+Setting up Terraform with Azure: https://docs.microsoft.com/en-gb/azure/virtual-machines/linux/terraform-install-configure
