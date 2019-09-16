@@ -3,7 +3,7 @@
 ## Prerequisite
 ### Install Terraform
 1. We will be running this workshop on Macbook 
-2. Dowloard Terraform binary for your system via https://releases.hashicorp.com/terraform/0.12.8/terraform_0.12.8_darwin_amd64.zip
+2. Dowload Terraform binary for your system via https://releases.hashicorp.com/terraform/0.12.8/terraform_0.12.8_darwin_amd64.zip
 3. Once the binary is downloaded on your system, unzip it and move the binary to `/usr/local/bin`
 4. Move to the root and type `terraform`, the command should be recognized & give you Usage 
 
