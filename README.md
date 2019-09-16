@@ -51,7 +51,7 @@ Do a `source .bash_profile` on terminal
 
 ## Final Check 
 . Move into the "Test" directory and then test if you can do stuff with terraform , use: 
-   1. `terraform init` // This should give you the azurerm version & say `Terraform has been successfully initialized!` , if a error occurs saying no azure cli then you missed point 3
+   1. `terraform init` // This should give you the azurerm version & say `Terraform has been successfully initialized!` , if a error occurs saying no azure cli then you missed installing the azure-cli
    2. `terraform plan`// This should give you a plan   
    3. `terraform apply` // This will create the corresponding resource
    4. `terraform destroy` // This will destroy the resource
