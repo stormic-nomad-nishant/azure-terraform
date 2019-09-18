@@ -1,7 +1,7 @@
 resource "azurerm_virtual_machine" "generic-machine" {
   location = "${var.azure-dc}"
   name = "${var.machine-name}"
-  network_interface_ids = ["${var.vir-nic}"]
+  network_interface_ids = "${var.vir-nic}"
   resource_group_name = "${var.resource-grp-name}"
   vm_size = "${var.machine-type}"
 
