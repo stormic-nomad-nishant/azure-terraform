@@ -26,3 +26,7 @@ variable "vir-nic" {
 variable "source_key_path" {
   default = "/blah/some/more/blah"
 }
+
+variable "instanace-count" {
+  default = 0
+}

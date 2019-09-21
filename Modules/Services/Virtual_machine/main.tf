@@ -1,5 +1,6 @@
 resource "azurerm_virtual_machine" "generic-machine" {
   location = "${var.azure-dc}"
+  count = "${var.instanace-count}"
   name = "${var.machine-name}"
   network_interface_ids = "${var.vir-nic}"
   resource_group_name = "${var.resource-grp-name}"
