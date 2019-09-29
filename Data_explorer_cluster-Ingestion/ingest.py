@@ -35,7 +35,7 @@ client = KustoIngestClient(kcsb)
 # there are a lot of useful properties, make sure to go over docs and check them out
 ingestion_props = IngestionProperties(
     database="logcluster-database",
-    table="{table_name}",
+    table="syslog",
     dataFormat=DataFormat.CSV,
     # in case status update for success are also required
     # reportLevel=ReportLevel.FailuresAndSuccesses,
@@ -49,7 +49,7 @@ ingestion_props = IngestionProperties(
 # ingest a whole folder.
 import os
 
-path = "/var/log"
+path = "/Users/nissingh/Documents/Terraform-N-More/logs"
 [client.ingest_from_file(f, ingestion_properties=ingestion_props) for f in os.listdir(path)]
 
 ##################################################################
