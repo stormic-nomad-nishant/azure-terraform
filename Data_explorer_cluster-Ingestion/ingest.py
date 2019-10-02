@@ -18,16 +18,18 @@ from azure.kusto.ingest import (
 ##################################################################
 cluster = "https://ingest-logcluster.westus.kusto.windows.net"
 
-# In case you want to authenticate with AAD device code.
-# Please note that if you choose this option, you'll need to autenticate for every new instance that is initialized.
-# It is highly recommended to create one instance and use it for all of your queries.
-kcsb = KustoConnectionStringBuilder.with_aad_device_authentication(cluster)
+# In case you want to authenticate with AAD application.
+client_id = "XXXXXXX"
+client_secret = "XXXXXX"
 
-# The authentication method will be taken from the chosen KustoConnectionStringBuilder.
+# read more at https://docs.microsoft.com/en-us/onedrive/find-your-office-365-tenant-id
+authority_id = "XXXXXX"
+
+kcsb = KustoConnectionStringBuilder.with_aad_application_key_authentication(
+    cluster, client_id, client_secret, authority_id
+)
+
 client = KustoIngestClient(kcsb)
-
-# there are more options for authenticating - see azure-kusto-data samples
-
 ##################################################################
 ##                        INGESTION                             ##
 ##################################################################
@@ -35,7 +37,7 @@ client = KustoIngestClient(kcsb)
 # there are a lot of useful properties, make sure to go over docs and check them out
 ingestion_props = IngestionProperties(
     database="logcluster-database",
-    table="syslog",
+    table="TestTable",
     dataFormat=DataFormat.CSV,
     # in case status update for success are also required
     # reportLevel=ReportLevel.FailuresAndSuccesses,
@@ -49,9 +51,12 @@ ingestion_props = IngestionProperties(
 # ingest a whole folder.
 import os
 
-path = "/Users/nissingh/Documents/Terraform-N-More/logs"
-[client.ingest_from_file(f, ingestion_properties=ingestion_props) for f in os.listdir(path)]
+path = "/Users/nissingh/Documents/Terraform-N-More/logs/"
+#for f in os.listdir(path):
+#    print path+f
+[client.ingest_from_file(path+f, ingestion_properties=ingestion_props) for f in os.listdir(path)]
 
+print "test"
 ##################################################################
 ##                        INGESTION STATUS                      ##
 ##################################################################
