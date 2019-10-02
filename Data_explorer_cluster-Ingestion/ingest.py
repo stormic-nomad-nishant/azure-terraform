@@ -19,11 +19,11 @@ from azure.kusto.ingest import (
 cluster = "https://ingest-logcluster.westus.kusto.windows.net"
 
 # In case you want to authenticate with AAD application.
-client_id = "XXXXXXX"
-client_secret = "XXXXXX"
+client_id = "<insert here your AAD application id>"
+client_secret = "<insert here your AAD application key>"
 
 # read more at https://docs.microsoft.com/en-us/onedrive/find-your-office-365-tenant-id
-authority_id = "XXXXXX"
+authority_id = "<insert here your tenant id>"
 
 kcsb = KustoConnectionStringBuilder.with_aad_application_key_authentication(
     cluster, client_id, client_secret, authority_id
